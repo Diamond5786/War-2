@@ -3,144 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Gallery</title>
-    <!-- Embedded CSS instead of external link -->
+    <title>WAR 2 - Movie Poster</title>
     <style>
         * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-          font-family: "Arial", sans-serif;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          min-height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
         .container {
-          max-width: 400px;
-          width: 100%;
-          padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .image-card {
-          position: relative;
-          border-radius: 15px;
-          overflow: hidden;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-          transition: transform 0.3s ease;
+        .image-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
         }
 
-        .image-card:hover {
-          transform: translateY(-10px);
+        .movie-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
         }
 
-        .main-image {
-          width: 100%;
-          height: auto;
-          display: block;
-          transition: transform 0.3s ease;
+        .movie-image:hover {
+            transform: scale(1.05);
         }
 
-        .overlay {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-          padding: 30px 20px 20px;
-          transform: translateY(0);
-          transition: transform 0.3s ease;
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
         }
 
-        .see-more-btn {
-          background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-          color: white;
-          border: none;
-          padding: 12px 30px;
-          border-radius: 25px;
-          font-size: 16px;
-          font-weight: bold;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        .action-button {
+            width: 100%;
+            max-width: 250px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .see-more-btn:hover {
-          background: linear-gradient(45deg, #ee5a24, #ff6b6b);
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        .online-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
         }
 
-        .see-more-btn:active {
-          transform: translateY(0);
+        .online-button:hover {
+            background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 107, 107, 0.4);
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-          .container {
-            max-width: 300px;
-            padding: 15px;
-          }
+        .download-button {
+            background: linear-gradient(45deg, #4834d4, #686de0);
+            color: white;
+            box-shadow: 0 8px 20px rgba(72, 52, 212, 0.3);
+        }
 
-          .see-more-btn {
-            padding: 10px 25px;
-            font-size: 14px;
-          }
+        .download-button:hover {
+            background: linear-gradient(45deg, #686de0, #4834d4);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(72, 52, 212, 0.4);
+        }
+
+        .action-button:active {
+            transform: translateY(0);
+        }
+
+        .title {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                margin: 10px;
+            }
+            
+            .action-button {
+                font-size: 14px;
+                padding: 12px 20px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+        }
+
+        /* Animation effects */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .action-button:hover {
+            animation: pulse 0.6s ease-in-out;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="image-card">
-            <!-- Updated image source to use provided blob URL -->
-            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/aifaceswap-a5e2fe7dfddd20fc5a4700c681d25bd8.jpg-dbCs1eWV5sYz5P2a5DGqZw2pyHAdU6.jpeg" alt="Portrait" class="main-image">
-            <div class="overlay">
-                <button class="see-more-btn">See More</button>
-            </div>
+        <h1 class="title">WAR 2</h1>
+        <div class="image-container">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-LBoH5oqGToiM7GDdkwqfCg1yIu3Tkj.png" alt="WAR 2 Movie Poster" class="movie-image">
+        </div>
+        <div class="buttons-container">
+            <button class="action-button online-button" onclick="redirectToOnline()">
+                See for Online
+            </button>
+            <button class="action-button download-button" onclick="redirectToDownload()">
+                For Download
+            </button>
         </div>
     </div>
-    <!-- Embedded JavaScript instead of external link -->
+
     <script>
-        function redirectToLink() {
-            // आपका दिया गया link
-            const targetUrl = "https://greetingsdaydreamlitre.com/qv9xa4c5?key=ad08da8e007bc94c2a3ac65d5fd8e883";
-            
-            try {
-                // नई window में link खोलना
-                window.open(targetUrl, "_blank");
-            } catch (error) {
-                // अगर window.open काम नहीं करे तो same window में खोलना
-                window.location.href = targetUrl;
-            }
+        function redirectToOnline() {
+            const targetUrl = "https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384";
+            window.open(targetUrl, "_blank");
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const seeMoreBtn = document.querySelector(".see-more-btn");
-            const imageCard = document.querySelector(".image-card");
-            const mainImage = document.querySelector(".main-image");
+        function redirectToDownload() {
+            const targetUrl = "https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384";
+            window.open(targetUrl, "_blank");
+        }
 
-            // Button click event listener भी add करना
-            seeMoreBtn.addEventListener("click", function(e) {
-                e.preventDefault();
-                const targetUrl = "https://greetingsdaydreamlitre.com/qv9xa4c5?key=ad08da8e007bc94c2a3ac65d5fd8e883";
-                window.open(targetUrl, "_blank");
+        // Alternative method for better browser compatibility
+        document.addEventListener('DOMContentLoaded', function() {
+            const onlineBtn = document.querySelector('.online-button');
+            const downloadBtn = document.querySelector('.download-button');
+            
+            onlineBtn.addEventListener('click', function() {
+                window.open("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384", "_blank");
             });
-
-            // Image load होने पर animation add करना
-            mainImage.addEventListener("load", () => {
-                imageCard.style.opacity = "0";
-                imageCard.style.transform = "scale(0.8)";
-
-                setTimeout(() => {
-                    imageCard.style.transition = "all 0.5s ease";
-                    imageCard.style.opacity = "1";
-                    imageCard.style.transform = "scale(1)";
-                }, 100);
+            
+            downloadBtn.addEventListener('click', function() {
+                window.open("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384", "_blank");
             });
         });
     </script>
