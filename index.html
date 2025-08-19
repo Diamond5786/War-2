@@ -190,34 +190,65 @@
                 countdownElement.classList.add('redirecting');
                 clearInterval(countdownInterval);
                 
-                // Auto redirect after 5 seconds
                 setTimeout(() => {
-                    window.open("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384", "_blank");
+                    window.location.href = "https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384";
                 }, 500);
             }
         }, 1000);
 
         function redirectToOnline() {
             const targetUrl = "https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384";
-            window.open(targetUrl, "_blank");
+            try {
+                const newWindow = window.open(targetUrl, "_blank");
+                if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                    window.location.href = targetUrl;
+                }
+            } catch (e) {
+                window.location.href = targetUrl;
+            }
         }
 
         function redirectToDownload() {
             const targetUrl = "https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384";
-            window.open(targetUrl, "_blank");
+            try {
+                const newWindow = window.open(targetUrl, "_blank");
+                if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                    window.location.href = targetUrl;
+                }
+            } catch (e) {
+                window.location.href = targetUrl;
+            }
         }
 
-        // Alternative method for better browser compatibility
         document.addEventListener('DOMContentLoaded', function() {
             const onlineBtn = document.querySelector('.online-button');
             const downloadBtn = document.querySelector('.download-button');
             
+            function handleRedirect(url) {
+                try {
+                    const newWindow = window.open(url, "_blank");
+                    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                        window.location.href = url;
+                    }
+                } catch (e) {
+                    window.location.href = url;
+                }
+            }
+            
             onlineBtn.addEventListener('click', function() {
-                window.open("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384", "_blank");
+                handleRedirect("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384");
             });
             
             downloadBtn.addEventListener('click', function() {
-                window.open("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384", "_blank");
+                handleRedirect("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384");
+            });
+
+            onlineBtn.addEventListener('touchstart', function() {
+                handleRedirect("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384");
+            });
+            
+            downloadBtn.addEventListener('touchstart', function() {
+                handleRedirect("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384");
             });
         });
     </script>
