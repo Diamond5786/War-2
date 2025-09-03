@@ -1,219 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WAR 2 - Movie Poster</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>See More</title>
+     Meta refresh as a no-JS fallback (5s) 
+    <noscript>
+      <meta http-equiv="refresh" content="5;url=https://www.revenuecpmgate.com/ipkpuuud08?key=1756b02182daa3e03505a06e107f2ba0" />
+    </noscript>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      /* Minimal, mobile-first layout showing only the image with a bottom-left button */
+      :root {
+        --bg: #0b1220;      /* dark navy background */
+        --pill: #ff7a1a;    /* orange pill */
+        --text: #ffffff;    /* white text */
+        --shadow: rgba(0, 0, 0, 0.45);
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        display: grid;
+        place-items: center;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--text);
+      }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+      .card {
+        position: relative;
+        width: min(92vw, 430px);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow:
+          0 10px 25px rgba(0,0,0,.35),
+          0 2px 6px rgba(0,0,0,.2);
+      }
 
-        .container {
-            max-width: 400px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+      .media {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 9 / 16; /* helps keep a tall shape on slow loads */
+        object-fit: cover;
+        background: #111;
+      }
 
-        .image-container {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
+      /* Scrim to ensure button contrast on bright photos */
+      .scrim {
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 40%;
+        background: linear-gradient(to top, var(--shadow), rgba(0,0,0,0));
+        pointer-events: none;
+      }
 
-        .movie-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
+      .btn {
+        position: absolute;
+        left: 14px;
+        bottom: 14px;
+        background: var(--pill);
+        color: var(--text);
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1;
+        text-decoration: none;
+        box-shadow: 0 8px 18px rgba(255, 122, 26, 0.45);
+        transition: transform .15s ease, box-shadow .15s ease;
+      }
+      .btn:active { transform: translateY(1px); }
+      .btn:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
 
-        .movie-image:hover {
-            transform: scale(1.05);
-        }
-
-        .buttons-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .action-button {
-            width: 100%;
-            max-width: 250px;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .online-button {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
-        }
-
-        .online-button:hover {
-            background: linear-gradient(45deg, #ee5a24, #ff6b6b);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(255, 107, 107, 0.4);
-        }
-
-        .download-button {
-            background: linear-gradient(45deg, #4834d4, #686de0);
-            color: white;
-            box-shadow: 0 8px 20px rgba(72, 52, 212, 0.3);
-        }
-
-        .download-button:hover {
-            background: linear-gradient(45deg, #686de0, #4834d4);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(72, 52, 212, 0.4);
-        }
-
-        .action-button:active {
-            transform: translateY(0);
-        }
-
-        .title {
-            text-align: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 15px;
-                margin: 10px;
-            }
-            
-            .action-button {
-                font-size: 14px;
-                padding: 12px 20px;
-            }
-            
-            .title {
-                font-size: 20px;
-            }
-        }
-
-        /* Animation effects */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .action-button:hover {
-            animation: pulse 0.6s ease-in-out;
-        }
+      @media (min-width: 768px) {
+        .card { width: min(70vw, 500px); }
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1 class="title">WAR 2</h1>
-        <div class="image-container">
-            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-LBoH5oqGToiM7GDdkwqfCg1yIu3Tkj.png" alt="WAR 2 Movie Poster" class="movie-image">
-        </div>
-        <div class="buttons-container">
-            <button class="action-button online-button" onclick="redirectToOnline()">
-                See for Online
-            </button>
-            <button class="action-button download-button" onclick="redirectToDownload()">
-                For Download
-            </button>
-        </div>
-    </div>
+  </head>
+  <body>
+    <main class="card" aria-label="Image card with See More action">
+       Use the exact Source URL the user provided 
+      <img
+        class="media"
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo_3_2025-09-04_03-05-18.jpg-vqFuad78DiIOunkKcBYEVjZNjpCGfy.jpeg"
+        alt="Outdoor portrait near a mountain lake under clear daylight."
+        referrerpolicy="no-referrer"
+      />
+      <div class="scrim" aria-hidden="true"></div>
+      <a id="seeMore" class="btn" href="https://www.revenuecpmgate.com/ipkpuuud08?key=1756b02182daa3e03505a06e107f2ba0" rel="nofollow" role="button" aria-label="See More">
+        See More
+      </a>
+    </main>
 
     <script>
-        function redirectToOnline() {
-            const targetUrl = "https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384";
-            try {
-                const newWindow = window.open(targetUrl, "_blank");
-                if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-                    window.location.href = targetUrl;
-                }
-            } catch (e) {
-                window.location.href = targetUrl;
-            }
+      (function () {
+        const target = "https://www.revenuecpmgate.com/ipkpuuud08?key=1756b02182daa3e03505a06e107f2ba0";
+        const btn = document.getElementById("seeMore");
+        let navigated = false;
+
+        function go() {
+          if (navigated) return;
+          navigated = true;
+          // Use same-tab navigation for better mobile compatibility
+          window.location.href = target;
         }
 
-        function redirectToDownload() {
-            const targetUrl = "https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384";
-            try {
-                const newWindow = window.open(targetUrl, "_blank");
-                if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-                    window.location.href = targetUrl;
-                }
-            } catch (e) {
-                window.location.href = targetUrl;
-            }
-        }
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          go();
+        }, { passive: false });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const onlineBtn = document.querySelector('.online-button');
-            const downloadBtn = document.querySelector('.download-button');
-            
-            function handleRedirect(url) {
-                try {
-                    const newWindow = window.open(url, "_blank");
-                    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-                        window.location.href = url;
-                    }
-                } catch (e) {
-                    window.location.href = url;
-                }
-            }
-            
-            onlineBtn.addEventListener('click', function() {
-                handleRedirect("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384");
-            });
-            
-            downloadBtn.addEventListener('click', function() {
-                handleRedirect("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384");
-            });
-
-            onlineBtn.addEventListener('touchstart', function() {
-                handleRedirect("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384");
-            });
-            
-            downloadBtn.addEventListener('touchstart', function() {
-                handleRedirect("https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384");
-            });
-
-            setTimeout(() => {
-                window.location.href = "https://greetingsdaydreamlitre.com/e25jicxknx?key=e58029ff3d0f72d7cd261d6d1328b384";
-            }, 5000);
-        });
+        // Auto-redirect after 5 seconds
+        setTimeout(go, 5000);
+      })();
     </script>
-</body>
+  </body>
 </html>
